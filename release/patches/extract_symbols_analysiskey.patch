@@ -1,0 +1,16 @@
+diff --git a/llvm/utils/extract_symbols.py b/llvm/utils/extract_symbols.py
+index 9cc2c5c5c37..0f09e4311a2 100755
+--- a/llvm/utils/extract_symbols.py
++++ b/llvm/utils/extract_symbols.py
+@@ -104,6 +104,10 @@ def should_keep_microsoft_symbol(symbol, calling_convention_decoration):
+     # Skip X86GenMnemonicTables functions, they are not exposed from llvm/include/.
+     elif re.match(r"\?is[A-Z0-9]*@X86@llvm", symbol):
+         return None
++    # Keep AnalysisKey/AnalysisSetKey data symbols used by the new pass manager.
++    # Pass plugins need these to match the host tool's analysis registration.
++    elif re.search(r"(llvm|clang)@@0UAnalysis(Set)?Key@2@A$", symbol):
++        return symbol
+     # Keep mangled llvm:: and clang:: function symbols. How we detect these is a
+     # bit of a mess and imprecise, but that avoids having to completely demangle
+     # the symbol name. The outermost namespace is at the end of the identifier
+

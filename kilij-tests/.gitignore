@@ -1,0 +1,6 @@
+/out/
+/work/
+/crashers/
+__pycache__/
+*.pyc
+
