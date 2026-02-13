@@ -1,8 +1,5 @@
 # Kilij
 
-![Build](https://github.com/dannyisbad/kilij/actions/workflows/build.yml/badge.svg)
-![License: UIUC](https://img.shields.io/badge/License-UIUC%2FNCSA-blue.svg)
-
 A ~25,000-line C++17 code obfuscation framework for LLVM 20. Twelve composable
 IR-level transforms and a custom bytecode virtual machine, usable as a drop-in
 Clang pass plugin (`Kilij.{so|dll}`) or baked into a full toolchain build.
