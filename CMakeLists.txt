@@ -1,7 +1,7 @@
 if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
   cmake_minimum_required(VERSION 3.20)
-  project(KilijObfuscation LANGUAGES CXX)
-  find_package(LLVM 20 CONFIG)
+  project(KilijObfuscation LANGUAGES C CXX)
+  find_package(LLVM 20.1 CONFIG)
   if (NOT LLVM_FOUND)
     message(FATAL_ERROR
       "Could not find LLVM 20 CMake config.\n"

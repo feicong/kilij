@@ -47,6 +47,13 @@ extern ManagedStatic<CryptoUtils> cryptoutils;
 #define UNALIGNED
 #endif
 
+#elif defined(__aarch64__) || defined(__arm64__) || defined(_M_ARM64)
+
+#ifndef ENDIAN_LITTLE
+#define ENDIAN_LITTLE
+#endif
+#define ENDIAN_64BITWORD
+
 #elif defined(__alpha)
 
 #ifndef ENDIAN_LITTLE

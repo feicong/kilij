@@ -223,12 +223,12 @@ static std::size_t estimateBytecodeGlobalBytes(const Module &M,
   Type *I64Ty = Type::getInt64Ty(Ctx);
   std::size_t Bytes = 0;
   Bytes += static_cast<std::size_t>(Layout.Stride) * BC.Instrs.size();
-  Bytes += DL.getTypeAllocSize(I32Ty) * BC.BlockOffsets.size();
-  Bytes += DL.getTypeAllocSize(I64Ty) * BC.SwitchValues.size();
-  Bytes += DL.getTypeAllocSize(I32Ty) * BC.SwitchTargets.size();
+  Bytes += static_cast<std::size_t>(DL.getTypeAllocSize(I32Ty).getFixedValue()) * BC.BlockOffsets.size();
+  Bytes += static_cast<std::size_t>(DL.getTypeAllocSize(I64Ty).getFixedValue()) * BC.SwitchValues.size();
+  Bytes += static_cast<std::size_t>(DL.getTypeAllocSize(I32Ty).getFixedValue()) * BC.SwitchTargets.size();
   if (Encode) {
     unsigned OpCount = static_cast<unsigned>(VMOpcode::Trap) + 1;
-    Bytes += DL.getTypeAllocSize(I8Ty) * OpCount;
+    Bytes += static_cast<std::size_t>(DL.getTypeAllocSize(I8Ty).getFixedValue()) * OpCount;
   }
   return Bytes;
 }
